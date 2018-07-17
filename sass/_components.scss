@@ -2,52 +2,126 @@
 // LOGO
 .logo {
   height: 3.25rem;
+  margin-left: 2rem;
 }
 
 
 ////////////////////////////////////////////////////
 // SEARCH
 .search {
-  &__input {
+  flex: 0 0 40%;
 
+  display: flex; //moves the icon to the center
+  align-items: center; //moves the icon to the center in y axis
+  justify-content: center; //moves the icon to the center in x axis
+
+  &__input {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background-color: var(--color-grey-light-2);
+    border: none;
+    padding: .7rem 2rem;
+    border-radius: 100px;
+    width: 90%;
+    transition: all .2s;
+    margin-right: -3.25rem; // moves the button on top of the input
+
+    &:focus {
+      outline: none; // removes the standard focus outline
+      width: 100%;
+      background-color: var(--color-grey-light-3);
+    }
+
+    &::-webkit-input-placeholder { //styles the placeholder text
+      font-weight: 100;
+      color: var(--color-grey-light-4);
+    }
   }
 
-  &__button {
+  &__input:focus + &__button { // put this selector outside of the input group
+    background-color: var(--color-grey-light-3);
+  }
 
+  &__input:focus + &__button &__icon  { // put this selector outside of the input group
+    fill: var(--color-grey-dark-1);
+  }
+
+
+
+  &__button {
+    border: none;
+    background-color: var(--color-grey-light-2);
+
+    &:focus {
+      outline: none;
+    }
+
+    &:active {
+      transform: translateY(2px);
+    }
   }
 
   &__icon {
     height: 2rem;
     width: 2rem;
+    fill: var(--color-grey-dark-3); // colors the svg icon (must be applied to the svg element)
   }
 }
 
 ////////////////////////////////////////////////////
 // USER NAVIGATION
 .user-nav {
-  &__icon-box {
+  align-self: stretch; // stretchs the parent div to take up the whole header
 
+  display: flex;
+  align-items: center; // aligns items in the y axis
+  
+
+  & > * { // selects all of the user navs direct children
+    padding: 0 2rem;
+    cursor: pointer; // changes the hover mouse icon to a hand
+    height: 100%;
+
+    display: flex;
+    align-items: center; // centers the icons & user vertically
+  }
+
+  & > *:hover { // selects all of the user navs direct children when hovered state
+    background-color: var(--color-grey-light-2);
+  }
+
+  &__icon-box {
+   position: relative;
   }
 
   &__icon {
     height: 2.25rem;
     width: 2.25rem;
+    fill: var(--color-grey-dark-2);
   }
 
-  &__notification {
+  &__notification { // styling the span
+    font-size: .8rem;
+    height: 1.75rem;
+    width: 1.75rem;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    color: #fff;
+    position: absolute;
+    top: 1.5rem;
+    right: 1.1rem;
 
+    display: flex; // flexbox works with text as well
+    justify-content: center; // centers the text inside the circle (x axis)
+    align-items: center; // centers the text inside the circle (y axis)
+    
   }
 
-  &__user {
-
-  }
-
-  &__user-photo {
+  &__user-photo { // forms the profile photo
     height: 3.75rem;
     border-radius: 50%;
+    margin-right: 1rem;
   }
 
-  &__user-name {
-
-  }
 }
