@@ -34,9 +34,6 @@
 .hotel-view {
   background-color: #fff;
 
-  //TEST
-  height: 80rem;
-
   flex: 1; // allows the element to grow as much as it can.
 }
 
@@ -50,6 +47,7 @@
   padding: 4.5rem;
   background-color: var(--color-grey-light-1);
   border-bottom: var(--line);
+
 }
 
 .description {
