@@ -44,6 +44,8 @@
 // DESCRIPTION
 
 .detail {
+  font-size: 1.4rem; // both description and user-reviews inherit this font size
+  
   display: flex;
   padding: 4.5rem;
   background-color: var(--color-grey-light-1);
@@ -51,8 +53,6 @@
 }
 
 .description {
-  font-size: 1.4rem;
-
   background-color: #fff;
   box-shadow: 0 2rem 5rem rgba(0,0,0,0.07);
   padding: 3rem;
@@ -61,6 +61,12 @@
 }
 
 .user-reviews {
-  background-color: yellowgreen;
+  // text-align: center; - this will cause all the text in the divs to be centered
+
   flex: 1; // allows it to occupy the remaining space left by description.
+  display: flex;
+  flex-direction: column;
+  align-items: center; // prevents the buttons underline from spanning the entire width
 }
+
+
