@@ -332,3 +332,89 @@
     box-shadow: none;
   }
 }
+
+
+////////////////////////////////////////////////////
+// PARAGRAPH
+
+.paragraph:not(:last-of-type) {
+  margin-bottom: 2rem;
+}
+
+////////////////////////////////////////////////////
+// LIST
+
+.list {
+  list-style: none; // removes default bullet points
+  margin: 3rem 0;
+  padding: 3rem 0;
+  border-top: var(--line);
+  border-bottom: var(--line);
+
+  display: flex;
+  flex-wrap: wrap;
+  
+
+  
+  &__item {
+    flex: 0 0 50%; // makes the items form 2 columns
+    margin-bottom: .7rem;
+  }
+
+  &__item::before { // pseudo class for bullet point icon
+    content: "";
+    display: inline-block;
+    height: 1rem;
+    width: 1rem;
+    margin-right: .7rem;
+
+    // old browser approach
+    // background-image: url(../img/chevron-thin-right.svg);
+    // background-size: cover;
+
+    // new browser approach - masks // mask defines an area where we can look through the element and see what is behind
+    // this is similar to clipping in the first project
+    background-color: var(--color-primary);
+    -webkit-mask-image: url(../img/chevron-thin-right.svg);
+    mask-image: url(../img/chevron-thin-right.svg);
+    -webkit-mask-size: cover;
+    mask-size: cover; // forces the mask to the same size as the height and width specified above.
+  }
+}
+
+////////////////////////////////////////////////////
+// RECOMMEND
+
+.recommend {
+  font-size: 1.3rem;
+  color: var(--color-grey-dark-3);
+
+  display: flex;
+  align-items: center;
+  // justify-content: space-between;
+
+
+  &__count {
+    margin-right: auto;
+  }
+
+  &__friends {
+
+    
+  }
+
+  &__photo {
+    box-sizing: content-box; // this overwrites the value we set at the start of project
+
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+    border: 3px solid #fff;
+
+    &:not(:last-child) { // selects all but the last photo
+      margin-right: -1.5rem;
+    }
+  }
+
+  
+}
