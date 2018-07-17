@@ -125,3 +125,107 @@
   }
 
 }
+
+////////////////////////////////////////////////////
+// SIDE NAVIGATION
+
+.sidebar {
+  
+}
+
+.side-nav {
+  font-size: 1.4rem;
+  list-style: none; // removes the default bullet points
+  margin-top: 3.5rem;
+  
+
+  &__item {
+    position: relative; // parent element of the pseudo class
+
+    &:not(:last-child) { // all item elements but the last
+      margin-bottom: .5rem;
+    }
+  }
+
+  &__item::before { // creating a pseudo class
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 3px;
+    background-color: var(--color-primary);
+    transform: scaleY(0);
+    transform-origin: center; // default is center
+    transition: transform .2s,
+                width .4s cubic-bezier(1,0,0,1) .2s, // this delays the width transform by .4s
+                background-color .1s; 
+  }
+
+  &__item:hover::before,
+  &__item--active::before {  // this applys the class to the currently active html sidebar el
+    transform: scaleY(1);
+    width: 100%;
+  }
+
+  &__item:active::before {
+    background-color: var(--color-primary-light);
+  }
+
+  &__link:link,
+  &__link:visited {
+    color: var(--color-grey-light-1);
+    text-decoration: none; // removes default link underlines
+    text-transform: uppercase;
+    display: block; // gives each element its own row
+    padding: 1.5rem 3rem; // spaces out the options within the column
+
+    position: relative; // this is required for z-index to work correctly
+    z-index: 10;
+
+    display: flex;         // the following 2 commands vertically align the icons and text
+    align-items: center;
+
+  }
+
+  // &__link:hover { // the fill: currentColor takes the value in its parents hover
+  //   color: orangered;
+  // }
+
+  &__icon {
+    width: 1.75rem;
+    height: 1.75rem;
+    margin-right: 2rem;
+    fill: currentColor; // fill colors the svg, currentColor takes the color of the parent element;
+  }
+
+}
+////////////////////////////////////////////////////
+// LEGAL TEXT
+
+.legal {
+  font-size: 1.2rem;
+  color: var(--color-grey-light-4);
+  text-align: center;
+  padding: 2.5rem;
+}
+
+////////////////////////////////////////////////////
+// GALLERY
+
+.gallery {
+  display: flex;
+
+  &__photo {
+    width: 100%;
+    display: block; // this avoids a small space undernearth the image when it's left as an inline element
+  }
+}
+
+
+
+////////////////////////////////////////////////////
+// HOTEL VIEW
+
+////////////////////////////////////////////////////
+// HOTEL VIEW
