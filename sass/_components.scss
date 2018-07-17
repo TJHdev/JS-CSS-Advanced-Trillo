@@ -217,7 +217,7 @@
   display: flex;
 
   &__photo {
-    width: 100%;
+    width: 100%;  // the old method would have been to 33.333% and to use float: left. Then use clearfix on the parent to fillout the empty space
     display: block; // this avoids a small space undernearth the image when it's left as an inline element
   }
 }
@@ -225,7 +225,110 @@
 
 
 ////////////////////////////////////////////////////
-// HOTEL VIEW
+// HOTEL OVERVIEW
+
+.overview {
+  display: flex;
+  align-items: center; // centers items in y axis
+  border-bottom: 1px solid var(--color-grey-light-2);
+
+
+  &__heading {
+    font-size: 2.25rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 1.5rem 3rem;
+  }
+
+  &__stars {
+    // flex: 1; // creates a space in the middle between the flexed items (justify-content can't handle this properly)
+    margin-right: auto; // achieves the same as flex: 1 but gives more control over the actual element.
+    display: flex;
+  }
+
+  &__icon-star,
+  &__icon-location {
+    width: 1.75rem;
+    height: 1.75rem;
+    fill: var(--color-primary);
+  }
+
+  &__location {
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+  }
+
+  &__icon-location {
+    margin-right: 0.5rem;
+  }
+
+  &__rating {
+    background-color: var(--color-primary);
+    color: #fff;
+    margin-left: 3rem;
+    padding: 0 2.25rem;  // pads out the values
+    align-self: stretch; // this overwrites the align-content: center; in .overview <--
+
+    display: flex; // targets the child elements
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &-average {
+      font-size: 2.25rem;
+      font-weight: 300;
+      margin-bottom: -3px; // brings the two elements closer together
+    }
+
+    &-count {
+      font-size: .8rem;
+      text-transform: uppercase;
+      
+    }
+  }
+}
+
+
 
 ////////////////////////////////////////////////////
-// HOTEL VIEW
+// BUTTON INLINE
+
+.btn-inline {
+  border: none;
+  color: var(--color-primary);
+  font-size: inherit; // set the font size on the parent element and then the button will mirror its context
+  border-bottom: 1px solid currentColor; // currentColor inherits the parent color
+  padding-bottom: 2px;
+  display: inline-block;
+  background-color: transparent; // makes the button re-usable similar idea behind current color
+  cursor: pointer;
+  transition: all .2s;
+
+  &:hover {
+    color: var(--color-grey-dark-1); // using currentColor allows this to automatically apply to the border.
+  }
+
+  &:focus {
+    outline: none;
+    animation: pulsate 1s infinite;
+  }
+}
+
+@keyframes pulsate {
+  0% {
+    transform: scale(1);
+    box-shadow: none;
+  }
+
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 1rem 4rem rgba(0,0,0,.25);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow: none;
+  }
+}
