@@ -5,6 +5,11 @@
   box-shadow: var(--shadow-dark);
 
   min-height: 50rem;
+
+  @media only screen and (max-width: $bp-largest) {
+    margin: 0;
+    max-width: 100%; // adjusting the font size in another media query breaks the padding which is fixed by this
+  }
 }
 
 .header {
@@ -16,10 +21,20 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media only screen and (max-width: $bp-smallest) { // turns the sidebar into a topbar
+    flex-wrap: wrap;
+    align-content: space-around;
+    height: 11rem;
+  }
 }
 
 .content {
   display: flex;
+
+  @media only screen and (max-width: $bp-medium) { // turns the sidebar into a topbar
+    flex-direction: column;
+  }
 }
 
 .sidebar {
@@ -29,6 +44,8 @@
   display: flex;  // flexs the content in the sidebar
   flex-direction: column; // changes the direct to vertical
   justify-content: space-between; // puts space between the nav and the legal text
+
+
 }
 
 .hotel-view {
@@ -48,6 +65,13 @@
   background-color: var(--color-grey-light-1);
   border-bottom: var(--line);
 
+  @media only screen and (max-width: $bp-medium) { // makes each nav button occupy 25% of the width
+    padding: 3rem;
+  }
+
+  @media only screen and (max-width: $bp-small) { // makes each nav button occupy 25% of the width
+    flex-direction: column;
+  }
 }
 
 .description {
@@ -56,6 +80,16 @@
   padding: 3rem;
   flex: 0 0 60%; // usually when you set the first 2 to zero a percentage is used for flex-basis. 
   margin-right: 4.5rem;
+
+  @media only screen and (max-width: $bp-medium) { // makes each nav button occupy 25% of the width
+    padding: 2rem;
+    margin-right: 3rem;
+  }
+
+  @media only screen and (max-width: $bp-small) { // makes each nav button occupy 25% of the width
+    margin-bottom: 3rem;
+    margin-right: 0;
+  }
 }
 
 .user-reviews {

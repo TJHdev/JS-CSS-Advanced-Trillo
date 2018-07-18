@@ -15,6 +15,12 @@
   align-items: center; //moves the icon to the center in y axis
   justify-content: center; //moves the icon to the center in x axis
 
+  @media only screen and (max-width: $bp-smallest) { // moves search bar down when the screen gets too small
+    order: 1;
+    flex: 0 0 100%;
+    background-color: var(--color-grey-light-2);
+  }
+
   &__input {
     font-family: inherit;
     font-size: inherit;
@@ -31,6 +37,10 @@
       outline: none; // removes the standard focus outline
       width: 100%;
       background-color: var(--color-grey-light-3);
+
+      @media only screen and (max-width: $bp-smallest) { 
+        background-color: var(--color-grey-light-2);
+      }
     }
 
     &::-webkit-input-placeholder { //styles the placeholder text
@@ -41,6 +51,10 @@
 
   &__input:focus + &__button { // put this selector outside of the input group
     background-color: var(--color-grey-light-3);
+
+    @media only screen and (max-width: $bp-smallest) { 
+      background-color: var(--color-grey-light-2);
+    }
   }
 
   &__input:focus + &__button &__icon  { // put this selector outside of the input group
@@ -129,21 +143,29 @@
 ////////////////////////////////////////////////////
 // SIDE NAVIGATION
 
-.sidebar {
-  
-}
-
 .side-nav {
   font-size: 1.4rem;
   list-style: none; // removes the default bullet points
   margin-top: 3.5rem;
-  
+
+  @media only screen and (max-width: $bp-medium) {
+    display: flex;
+    margin: 0;
+  }
 
   &__item {
     position: relative; // parent element of the pseudo class
 
     &:not(:last-child) { // all item elements but the last
       margin-bottom: .5rem;
+
+      @media only screen and (max-width: $bp-medium) { // makes each nav button occupy 25% of the width
+        margin-bottom: 0;
+      }
+    }
+
+    @media only screen and (max-width: $bp-medium) { // makes each nav button occupy 25% of the width
+      flex-grow: 1;
     }
   }
 
@@ -186,6 +208,17 @@
     display: flex;         // the following 2 commands vertically align the icons and text
     align-items: center;
 
+
+    @media only screen and (max-width: $bp-medium) { // makes each nav button occupy 25% of the width
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    @media only screen and (max-width: $bp-small) { // makes each nav button occupy 25% of the width
+      flex-direction: column;
+      padding: 1.5rem;
+      justify-content: center;
+    }
   }
 
   // &__link:hover { // the fill: currentColor takes the value in its parents hover
@@ -197,6 +230,13 @@
     height: 1.75rem;
     margin-right: 2rem;
     fill: currentColor; // fill colors the svg, currentColor takes the color of the parent element;
+
+    @media only screen and (max-width: $bp-small) { // makes each nav button occupy 25% of the width
+      width: 1.5rem;
+      height: 1.5rem;
+      margin-right: 0;
+      margin-bottom: .7rem;
+    }
   }
 
 }
@@ -208,6 +248,10 @@
   color: var(--color-grey-light-4);
   text-align: center;
   padding: 2.5rem;
+
+  @media only screen and (max-width: $bp-medium) { // removes the legal text
+    display: none;
+  }
 }
 
 ////////////////////////////////////////////////////
@@ -239,6 +283,11 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     padding: 1.5rem 3rem;
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 1.8rem;
+      padding: 1.25rem 2rem;
+    }
   }
 
   &__stars {
@@ -276,16 +325,28 @@
     align-items: center;
     justify-content: center;
 
+    @media only screen and (max-width: $bp-small) {
+      padding: 0 1.5rem;
+      margin-left: 1.5rem;
+    }
+
     &-average {
       font-size: 2.25rem;
       font-weight: 300;
       margin-bottom: -3px; // brings the two elements closer together
+
+      @media only screen and (max-width: $bp-small) {
+        font-size: 1.8rem;
+      }
     }
 
     &-count {
       font-size: .8rem;
       text-transform: uppercase;
       
+      @media only screen and (max-width: $bp-small) {
+        font-size: .5rem;
+      }
     }
   }
 }
@@ -380,16 +441,19 @@
     margin-right: .7rem;
 
     // old browser approach
-    // background-image: url(../img/chevron-thin-right.svg);
-    // background-size: cover;
+    background-image: url(../img/chevron-thin-right.svg);
+    background-size: cover;
 
     // new browser approach - masks // mask defines an area where we can look through the element and see what is behind
     // this is similar to clipping in the first project
-    background-color: var(--color-primary);
-    -webkit-mask-image: url(../img/chevron-thin-right.svg);
-    mask-image: url(../img/chevron-thin-right.svg);
-    -webkit-mask-size: cover;
-    mask-size: cover; // forces the mask to the same size as the height and width specified above.
+    @supports (-webkit-mask-image: url()) or (mask-image: url()) {
+      background-color: var(--color-primary);
+      -webkit-mask-image: url(../img/chevron-thin-right.svg);
+      mask-image: url(../img/chevron-thin-right.svg);
+      -webkit-mask-size: cover;
+      mask-size: cover; // forces the mask to the same size as the height and width specified above.
+      background-image: none;
+    }
   }
 }
 
@@ -410,8 +474,7 @@
   }
 
   &__friends {
-
-    
+    display: flex;
   }
 
   &__photo {
@@ -440,6 +503,11 @@
   overflow: hidden; // culls the pseudo  ele
 
   position: relative;
+
+  @media only screen and (max-width: $bp-medium) { // makes each nav button occupy 25% of the width
+    padding: 2rem;
+    margin-bottom: 3rem;
+  }
   
 
   
@@ -504,6 +572,10 @@
 .cta {
   padding: 3.5rem 0;
   text-align: center;
+
+  @media only screen and (max-width: $bp-medium) { // makes each nav button occupy 25% of the width
+    padding: 2.5rem 0;
+  }
 
   &__book-now {
     font-size: 2rem;
